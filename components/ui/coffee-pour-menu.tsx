@@ -1553,7 +1553,7 @@ export function CoffeePourMenu({
   return (
     <div
       className={cn(
-        "relative grid w-full items-center gap-4 rounded-2xl sm:rounded-3xl bg-[#e4cdb0] p-3.5 sm:p-5 lg:p-6 text-[#3a271d] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-6",
+        "relative grid w-full items-center gap-3 rounded-2xl sm:rounded-3xl bg-[#e4cdb0] p-2.5 sm:p-4 lg:p-5 text-[#3a271d] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-6",
         className,
       )}
     >
@@ -1561,7 +1561,7 @@ export function CoffeePourMenu({
         role="radiogroup"
         aria-label="Coffee menu"
         onKeyDown={onKeyDown}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-1 sm:gap-1.5"
+        className="grid grid-cols-2 lg:flex lg:flex-col gap-1 sm:gap-1.5"
       >
         {items.map((it, i) => {
           const active = it.id === selected?.id;
@@ -1578,7 +1578,7 @@ export function CoffeePourMenu({
               onPointerEnter={(e) => e.pointerType === "mouse" && select(it.id)}
               onFocus={() => select(it.id)}
               onClick={() => select(it.id)}
-              className="group relative rounded-xl sm:rounded-2xl px-3.5 py-2 sm:px-4 sm:py-2.5 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#b97a45]/60"
+              className="group relative rounded-xl sm:rounded-2xl px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#b97a45]/60"
             >
               {active && (
                 <motion.span
@@ -1591,7 +1591,7 @@ export function CoffeePourMenu({
                 <span className="flex min-w-0 flex-col">
                   <span
                     className={cn(
-                      "text-[13.5px] sm:text-[15px] lg:text-[17px] leading-tight font-serif font-black tracking-tight transition-colors duration-300 whitespace-normal break-words",
+                      "text-[12px] sm:text-[13.5px] lg:text-[16px] leading-tight font-serif font-black tracking-tight transition-colors duration-300 whitespace-normal break-words",
                       active ? "text-[#3a271d]" : "text-[#3a271d]/60 group-hover:text-[#3a271d]/85",
                     )}
                   >
@@ -1600,7 +1600,7 @@ export function CoffeePourMenu({
                   {it.subtitle && (
                     <span
                       className={cn(
-                        "mt-0.5 text-[10px] sm:text-[11px] tracking-tight transition-colors duration-300 font-mono",
+                        "mt-0.5 text-[9px] sm:text-[10px] tracking-tight transition-colors duration-300 font-mono",
                         active ? "text-[#9a5e2e]" : "text-[#6b4a35]/70",
                       )}
                     >
@@ -1614,7 +1614,7 @@ export function CoffeePourMenu({
         })}
       </div>
 
-      <div className="relative aspect-[1/1] w-full max-w-[260px] sm:max-w-[290px] lg:max-w-[320px] mx-auto overflow-hidden rounded-xl sm:rounded-2xl bg-[radial-gradient(80%_62%_at_50%_42%,#fbf1e3_0%,#f0dcc2_45%,#e2c6a3_80%,#d6b791_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_0_0_1px_rgba(120,75,35,0.08),0_16px_36px_-18px_rgba(90,55,25,0.4)]">
+      <div className="relative aspect-[1/1] w-full max-w-[200px] sm:max-w-[240px] lg:max-w-[290px] mx-auto overflow-hidden rounded-xl sm:rounded-2xl bg-[radial-gradient(80%_62%_at_50%_42%,#fbf1e3_0%,#f0dcc2_45%,#e2c6a3_80%,#d6b791_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_0_0_1px_rgba(120,75,35,0.08),0_16px_36px_-18px_rgba(90,55,25,0.4)]">
         <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden="true">
           <Defs id={id} />
           <linearGradient id={id("table")} x1={0} y1={0} x2={0} y2={1}>

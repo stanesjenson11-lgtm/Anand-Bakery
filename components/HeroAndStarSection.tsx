@@ -51,7 +51,7 @@ export function HeroAndStarSection() {
       <section
         id="hero"
         ref={heroRef}
-        className="relative min-h-screen lg:h-screen lg:max-h-[920px] flex flex-col justify-between pt-20 sm:pt-24 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-cream-100 paper-grain scroll-mt-20"
+        className="relative min-h-[100svh] lg:h-screen lg:max-h-[920px] flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-cream-100 paper-grain scroll-mt-16"
       >
         {/* Background Sketches */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
@@ -102,38 +102,38 @@ export function HeroAndStarSection() {
             </p>
 
             {/* 3 Stats Strip */}
-            <div className="grid grid-cols-3 gap-2 pt-0.5">
-              <div className="p-2 rounded-lg bg-cream-50/80 border border-crust-800/12 shadow-xs">
-                <span className="block font-display text-[9px] text-crust-700 font-black uppercase tracking-wider">
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-0.5">
+              <div className="p-1.5 sm:p-2 rounded-lg bg-cream-50/80 border border-crust-800/12 shadow-xs text-center sm:text-left">
+                <span className="block font-display text-[8px] sm:text-[9px] text-crust-700 font-black uppercase tracking-wider">
                   The Core Secret
                 </span>
-                <span className="block font-serif font-bold text-xs text-espresso-950 mt-0.5">
+                <span className="block font-serif font-bold text-[11px] sm:text-xs text-espresso-950 mt-0.5 leading-tight">
                   100% Coconut Oil
                 </span>
               </div>
-              <div className="p-2 rounded-lg bg-cream-50/80 border border-crust-800/12 shadow-xs">
-                <span className="block font-display text-[9px] text-crust-700 font-black uppercase tracking-wider">
+              <div className="p-1.5 sm:p-2 rounded-lg bg-cream-50/80 border border-crust-800/12 shadow-xs text-center sm:text-left">
+                <span className="block font-display text-[8px] sm:text-[9px] text-crust-700 font-black uppercase tracking-wider">
                   Texture Promise
                 </span>
-                <span className="block font-serif font-bold text-xs text-espresso-950 mt-0.5">
+                <span className="block font-serif font-bold text-[11px] sm:text-xs text-espresso-950 mt-0.5 leading-tight">
                   Golden Cloud Crumb
                 </span>
               </div>
-              <div className="p-2 rounded-lg bg-cream-50/80 border border-crust-800/12 shadow-xs">
-                <span className="block font-display text-[9px] text-crust-700 font-black uppercase tracking-wider">
+              <div className="p-1.5 sm:p-2 rounded-lg bg-cream-50/80 border border-crust-800/12 shadow-xs text-center sm:text-left">
+                <span className="block font-display text-[8px] sm:text-[9px] text-crust-700 font-black uppercase tracking-wider">
                   Origin Year
                 </span>
-                <span className="block font-serif font-bold text-xs text-espresso-950 mt-0.5">
+                <span className="block font-serif font-bold text-[11px] sm:text-xs text-espresso-950 mt-0.5 leading-tight">
                   Since 1968 (58 Yrs)
                 </span>
               </div>
             </div>
 
             {/* Action Links */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-2.5 pt-1">
               <a
                 href="#americano"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-espresso-950 text-cream-100 hover:bg-gold-600 transition-all font-display font-black text-xs uppercase tracking-widest shadow-md group"
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-espresso-950 text-cream-100 hover:bg-gold-600 transition-all font-display font-black text-[11px] sm:text-xs uppercase tracking-widest shadow-md group"
               >
                 <span>Taste The Pairing</span>
                 <span className="transform group-hover:translate-y-1 transition-transform">↓</span>
@@ -141,7 +141,7 @@ export function HeroAndStarSection() {
 
               <a
                 href="#menu"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 border-crust-800/25 text-espresso-950 hover:bg-cream-200 transition-colors font-display font-black text-xs uppercase tracking-widest"
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border-2 border-crust-800/25 text-espresso-950 hover:bg-cream-200 transition-colors font-display font-black text-[11px] sm:text-xs uppercase tracking-widest"
               >
                 <span>Studio Menu</span>
               </a>

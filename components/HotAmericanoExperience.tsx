@@ -60,7 +60,7 @@ export function HotAmericanoExperience() {
   return (
     <section
       id="americano"
-      className="relative min-h-[580px] max-h-[100svh] h-screen py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-[#1A0D08] text-cream-50 scroll-mt-16 flex flex-col justify-center overflow-hidden"
+      className="relative min-h-[100svh] lg:h-screen lg:max-h-[900px] pt-14 sm:pt-16 lg:pt-10 pb-6 sm:pb-8 px-4 sm:px-6 lg:px-8 bg-[#1A0D08] text-cream-50 scroll-mt-0 flex flex-col justify-center overflow-hidden"
     >
       {/* Torn Paper Top Transition */}
       <div className="absolute top-0 left-0 right-0 h-4 bg-cream-100 torn-edge-bottom z-20 opacity-95 pointer-events-none" />
@@ -75,10 +75,10 @@ export function HotAmericanoExperience() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto w-full my-auto space-y-3.5 sm:space-y-4">
-        {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto space-y-1 shrink-0">
-          <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-black text-cream-50 tracking-tight leading-tight">
+      <div className="relative z-10 max-w-4xl mx-auto w-full my-auto space-y-2.5 sm:space-y-3.5">
+        {/* Section Header: Two Lines */}
+        <div className="text-center max-w-xl mx-auto space-y-0.5 shrink-0">
+          <h2 className="font-serif text-xl sm:text-2xl lg:text-3xl font-black text-cream-50 tracking-tight leading-tight">
             The Sawyerpuram <br />
             <span className="font-display italic text-gold-400 font-normal">Hot Americano</span>
           </h2>
@@ -96,10 +96,10 @@ export function HotAmericanoExperience() {
         </div>
 
         {/* Quick CTA to Full Rotating Menu */}
-        <div className="text-center shrink-0 pt-1">
+        <div className="text-center shrink-0 pt-0.5">
           <a
             href="#menu"
-            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-gold-500 hover:bg-gold-400 text-espresso-950 font-display font-black text-[11px] uppercase tracking-wider shadow-md transition-all hover:scale-105"
+            className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-gold-500 hover:bg-gold-400 text-espresso-950 font-display font-black text-[10.5px] sm:text-[11px] uppercase tracking-wider shadow-md transition-all hover:scale-105"
           >
             <span>Explore Menu</span>
             <span>↓</span>

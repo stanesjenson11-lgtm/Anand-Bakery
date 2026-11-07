@@ -84,9 +84,9 @@ export function Navbar() {
     const el = document.querySelector(href);
     if (!el) return;
     if (typeof window !== "undefined" && (window as any).__lenis) {
-      (window as any).__lenis.scrollTo(el, { offset: -70, duration: 1.1 });
+      (window as any).__lenis.scrollTo(el, { offset: 0, duration: 1.0 });
     } else {
-      const top = el.getBoundingClientRect().top + window.scrollY - 70;
+      const top = el.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };

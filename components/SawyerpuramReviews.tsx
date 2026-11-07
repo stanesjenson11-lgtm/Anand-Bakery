@@ -88,12 +88,12 @@ export function SawyerpuramReviews() {
           </p>
         </div>
 
-        {/* Stories Masonry / Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+        {/* Stories: Horizontal Swipeable on Mobile (like real IG stories), 3-col Grid on Tablet/Desktop */}
+        <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 gap-4 no-scrollbar sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 lg:gap-10 sm:overflow-visible">
           {REVIEWS.map((rev, i) => (
             <div
               key={i}
-              className={`relative rounded-2xl bg-cream-50 border-2 border-crust-800/20 p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:rotate-0 ${rev.rotation}`}
+              className={`w-[78vw] max-w-[280px] shrink-0 snap-center sm:w-auto sm:max-w-none relative rounded-2xl bg-cream-50 border-2 border-crust-800/20 p-4 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:rotate-0 sm:${rev.rotation}`}
             >
               {/* Polaroid-style Header */}
               <div className="flex items-center justify-between pb-3 border-b border-crust-800/10 text-xs">

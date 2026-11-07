@@ -214,18 +214,27 @@ const CSS =
   ".dsh-card{right:16px;width:250px;padding:14px 16px}" +
   ".dsh-top{left:auto;right:275px;top:30px}" +
   "}" +
-  "@container (max-width:767px){" +
-  ".dsh-root{height:auto;min-height:100svh;padding:12px 14px}" +
-  ".dsh-canvas{position:relative;left:auto;top:auto;width:100%;height:auto;transform:none;display:flex;flex-direction:column;align-items:center;padding:10px 0}" +
-  ".dsh-arc{width:200%;height:auto;left:-60%;top:-30px}" +
+  "@container (max-width:767px), @media (max-width:768px){" +
+  ".dsh-root{height:100svh!important;padding:8px 12px 10px}" +
+  ".dsh-canvas{position:relative;left:auto;top:auto;width:100%;height:auto;transform:none;display:flex;flex-direction:column;align-items:center;padding:4px 0}" +
+  ".dsh-arc{width:180%;height:auto;left:-40%;top:-20px}" +
   ".dsh-top{position:relative;left:auto;top:auto;align-self:flex-end}" +
-  ".dsh-pager{left:10px;top:140px}" +
-  ".dsh-plates{position:relative;left:auto;top:auto;width:min(52vw,30svh);height:min(52vw,30svh);margin-top:0}" +
+  ".dsh-pager{left:8px;top:120px}" +
+  ".dsh-plates{position:relative;left:auto;top:auto;width:min(40vw,20svh);height:min(40vw,20svh);margin-top:0}" +
   ".dsh-orbit>img{width:100%;height:100%}" +
-  ".dsh-head{position:relative;left:auto;top:auto;width:100%;height:120px;margin-top:10px}" +
-  ".dsh-hd{text-align:center;transform:scale(.78);transform-origin:50% 0}" +
-  ".dsh-acts{position:relative;left:auto;top:auto;margin-top:4px}" +
-  ".dsh-card{position:relative;right:auto;top:auto;transform:none;width:100%;max-width:420px;margin-top:10px}" +
+  ".dsh-head{position:relative;left:auto;top:auto;width:100%;height:64px;margin-top:2px}" +
+  ".dsh-hd{text-align:center;transform:scale(.72);transform-origin:50% 0}" +
+  ".dsh-acts{position:relative;left:auto;top:auto;margin-top:2px}" +
+  ".dsh-card{position:relative;right:auto;top:auto;transform:none;width:100%;max-width:360px;margin-top:4px;padding:10px 14px;border-radius:16px}" +
+  ".dsh-tabs{margin-bottom:6px;font-size:11px}" +
+  ".dsh-rate{height:42px;margin:0 0 6px 2px}" +
+  ".dsh-badge{width:34px;height:42px;border-radius:8px}" +
+  ".dsh-num{font-size:26px}" +
+  ".dsh-chef{font-size:15px}" +
+  ".dsh-kit{font-size:9.5px;margin:1px 0 4px}" +
+  ".dsh-desc{font-size:11.5px;min-height:34px;line-height:1.35}" +
+  ".dsh-ing{min-height:34px;gap:4px}" +
+  ".dsh-ing li{font-size:10px;padding:2px 7px}" +
   ".dsh-strip{display:none}" +
   "}" +
   "@media (prefers-reduced-motion:reduce){.dsh-track,.dsh-dot,.dsh-dot i,.dsh-th .dsh-btn,.dsh-th img,.dsh-like{transition:none}}"
@@ -331,6 +340,15 @@ export function DishOrbitCarousel({
     }
     const a = parts(from)
     const d = dirRef.current
+
+    // Ensure all other dishes are instantly hidden to avoid visual glitches during rapid scrub
+    for (let i = 0; i < n; i++) {
+      if (i !== from && i !== to) {
+        const p = parts(i)
+        gsap.set([p.orbit, p.head, p.body], { autoAlpha: 0 })
+      }
+    }
+
     const tl = gsap.timeline({ onComplete: () => { tlRef.current = null } })
     tlRef.current = tl
     // plate: out over the top on the orbit, the next one swiftly swings in
@@ -392,7 +410,7 @@ export function DishOrbitCarousel({
           select(n - 1, 1)
           return
         }
-        const seg = Math.min(n - 1, Math.max(0, Math.floor(self.progress * (steps + 0.15))))
+        const seg = Math.min(n - 1, Math.max(0, Math.floor(self.progress * n)))
         if (seg === segRef.current) return
         const dir = seg > segRef.current ? 1 : -1
         segRef.current = seg

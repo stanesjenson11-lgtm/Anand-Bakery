@@ -173,7 +173,7 @@ export function VisitBakerySection() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Anand Kumar"
-                      className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border border-crust-800/20 text-espresso-950 text-sm focus:outline-none focus:border-gold-500"
+                      className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border border-crust-800/20 text-espresso-950 text-base sm:text-sm focus:outline-none focus:border-gold-500"
                     />
                   </div>
 
@@ -187,7 +187,7 @@ export function VisitBakerySection() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="e.g. +91 98765 43210"
-                      className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border border-crust-800/20 text-espresso-950 text-sm focus:outline-none focus:border-gold-500"
+                      className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border border-crust-800/20 text-espresso-950 text-base sm:text-sm focus:outline-none focus:border-gold-500"
                     />
                   </div>
 
@@ -198,7 +198,7 @@ export function VisitBakerySection() {
                     <select
                       value={items}
                       onChange={(e) => setItems(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border border-crust-800/20 text-espresso-950 text-sm focus:outline-none focus:border-gold-500"
+                      className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border border-crust-800/20 text-espresso-950 text-base sm:text-sm focus:outline-none focus:border-gold-500"
                     >
                       <option value="1 Box of Heritage Star Cakes (6 pcs)">1 Box of Heritage Star Cakes (6 pcs)</option>
                       <option value="Family Pack of Star Cakes (12 pcs)">Family Pack of Star Cakes (12 pcs)</option>
@@ -219,7 +219,7 @@ export function VisitBakerySection() {
                           value={customItem}
                           onChange={(e) => setCustomItem(e.target.value)}
                           placeholder="e.g. 2 boxes star cakes, 4 veg puffs, 2 hot americanos"
-                          className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border-2 border-gold-500/50 text-espresso-950 text-sm focus:outline-none focus:border-gold-600 shadow-inner"
+                          className="w-full px-4 py-2.5 rounded-lg bg-cream-50 border-2 border-gold-500/50 text-espresso-950 text-base sm:text-sm focus:outline-none focus:border-gold-600 shadow-inner"
                         />
                       </div>
                     )}

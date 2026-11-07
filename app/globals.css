@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #F8F3EA;
+  --color-foreground: #1A0D08;
+  --color-muted-foreground: #6B4E3D;
+  --color-primary: #D68A36;
+  --espresso-950: #1A0D08;
+  --espresso-900: #25140E;
+  --crust-800: #3D2315;
+  --gold-500: #D68A36;
+  --dough-300: #EADBC4;
+  --cream-100: #F8F3EA;
+  --cream-50: #FAF7F2;
+  --stamp-red: #8F2A1E;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--cream-100);
+  color: var(--espresso-950);
+}
+
+::selection {
+  background-color: #D68A36;
+  color: #FAF7F2;
+}
+
+/* Torn paper edge generators */
+.torn-edge-top {
+  clip-path: polygon(
+    0% 0%, 2% 8px, 4% 1px, 7% 10px, 10% 2px, 13% 9px, 16% 0px, 19% 8px, 22% 2px,
+    26% 11px, 29% 3px, 33% 9px, 37% 1px, 41% 10px, 45% 3px, 49% 9px, 53% 1px,
+    57% 11px, 61% 2px, 65% 9px, 69% 1px, 73% 10px, 77% 2px, 81% 9px, 85% 1px,
+    89% 11px, 93% 3px, 96% 9px, 100% 0%, 100% 100%, 0% 100%
+  );
+}
+
+.torn-edge-bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% calc(100% - 0px),
+    96% calc(100% - 9px), 93% calc(100% - 3px), 89% calc(100% - 11px), 85% calc(100% - 1px),
+    81% calc(100% - 9px), 77% calc(100% - 2px), 73% calc(100% - 10px), 69% calc(100% - 1px),
+    65% calc(100% - 9px), 61% calc(100% - 2px), 57% calc(100% - 11px), 53% calc(100% - 1px),
+    49% calc(100% - 9px), 45% calc(100% - 3px), 41% calc(100% - 10px), 37% calc(100% - 1px),
+    33% calc(100% - 9px), 29% calc(100% - 3px), 26% calc(100% - 11px), 22% calc(100% - 2px),
+    19% calc(100% - 8px), 16% calc(100% - 0px), 13% calc(100% - 9px), 10% calc(100% - 2px),
+    7% calc(100% - 10px), 4% calc(100% - 1px), 2% calc(100% - 8px), 0% calc(100% - 0px)
+  );
+}
+
+/* Stamp & tactile aesthetics */
+.stamp-border {
+  border: 2px dashed rgba(143, 42, 30, 0.4);
+  outline: 4px solid rgba(143, 42, 30, 0.15);
+  outline-offset: 4px;
+}
+
+.vintage-shadow {
+  box-shadow: 6px 8px 0px 0px #25140e;
+}
+
+.vintage-shadow-gold {
+  box-shadow: 6px 8px 0px 0px #d68a36;
+}
+
+.vintage-shadow-light {
+  box-shadow: 4px 6px 0px 0px rgba(37, 20, 14, 0.12);
+}
+
+.paper-grain {
+  background-image: radial-gradient(rgba(37, 20, 14, 0.04) 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
+.dark-paper-grain {
+  background-image: radial-gradient(rgba(248, 243, 234, 0.05) 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f3ea;
+}
+::-webkit-scrollbar-thumb {
+  background: #3d2315;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d68a36;
+}

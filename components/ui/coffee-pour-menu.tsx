@@ -1553,7 +1553,7 @@ export function CoffeePourMenu({
   return (
     <div
       className={cn(
-        "relative grid w-full items-center gap-6 rounded-[28px] sm:rounded-[32px] bg-[#e4cdb0] p-4 sm:p-7 lg:p-9 text-[#3a271d] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8",
+        "relative grid w-full items-center gap-4 rounded-2xl sm:rounded-3xl bg-[#e4cdb0] p-3.5 sm:p-5 lg:p-6 text-[#3a271d] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-6",
         className,
       )}
     >
@@ -1561,7 +1561,7 @@ export function CoffeePourMenu({
         role="radiogroup"
         aria-label="Coffee menu"
         onKeyDown={onKeyDown}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-1.5 sm:gap-2"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-1 sm:gap-1.5"
       >
         {items.map((it, i) => {
           const active = it.id === selected?.id;
@@ -1578,12 +1578,12 @@ export function CoffeePourMenu({
               onPointerEnter={(e) => e.pointerType === "mouse" && select(it.id)}
               onFocus={() => select(it.id)}
               onClick={() => select(it.id)}
-              className="group relative rounded-2xl px-4 py-3 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#b97a45]/60 sm:px-5 sm:py-3.5"
+              className="group relative rounded-xl sm:rounded-2xl px-3.5 py-2 sm:px-4 sm:py-2.5 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#b97a45]/60"
             >
               {active && (
                 <motion.span
                   layoutId={`${uid}-pill`}
-                  className="absolute inset-0 rounded-2xl bg-[#f7ecdd]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_0_0_1px_rgba(185,122,69,0.32),0_1px_2px_rgba(90,55,25,0.08),0_14px_30px_-16px_rgba(90,55,25,0.4)]"
+                  className="absolute inset-0 rounded-xl sm:rounded-2xl bg-[#f7ecdd]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_0_0_1px_rgba(185,122,69,0.32),0_1px_2px_rgba(90,55,25,0.08),0_10px_20px_-12px_rgba(90,55,25,0.35)]"
                   transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
                 />
               )}
@@ -1591,7 +1591,7 @@ export function CoffeePourMenu({
                 <span className="flex min-w-0 flex-col">
                   <span
                     className={cn(
-                      "text-[15px] sm:text-[18px] lg:text-[20px] leading-tight font-serif font-black tracking-tight transition-colors duration-300 whitespace-normal break-words",
+                      "text-[13.5px] sm:text-[15px] lg:text-[17px] leading-tight font-serif font-black tracking-tight transition-colors duration-300 whitespace-normal break-words",
                       active ? "text-[#3a271d]" : "text-[#3a271d]/60 group-hover:text-[#3a271d]/85",
                     )}
                   >
@@ -1600,7 +1600,7 @@ export function CoffeePourMenu({
                   {it.subtitle && (
                     <span
                       className={cn(
-                        "mt-0.5 text-[11px] sm:text-[12.5px] tracking-tight transition-colors duration-300 font-mono",
+                        "mt-0.5 text-[10px] sm:text-[11px] tracking-tight transition-colors duration-300 font-mono",
                         active ? "text-[#9a5e2e]" : "text-[#6b4a35]/70",
                       )}
                     >
@@ -1614,7 +1614,7 @@ export function CoffeePourMenu({
         })}
       </div>
 
-      <div className="relative aspect-[9/10] sm:aspect-square lg:aspect-[9/10] w-full max-w-[400px] mx-auto overflow-hidden rounded-[24px] bg-[radial-gradient(80%_62%_at_50%_42%,#fbf1e3_0%,#f0dcc2_45%,#e2c6a3_80%,#d6b791_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_0_0_1px_rgba(120,75,35,0.08),0_24px_50px_-24px_rgba(90,55,25,0.45)]">
+      <div className="relative aspect-[1/1] w-full max-w-[260px] sm:max-w-[290px] lg:max-w-[320px] mx-auto overflow-hidden rounded-xl sm:rounded-2xl bg-[radial-gradient(80%_62%_at_50%_42%,#fbf1e3_0%,#f0dcc2_45%,#e2c6a3_80%,#d6b791_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_0_0_1px_rgba(120,75,35,0.08),0_16px_36px_-18px_rgba(90,55,25,0.4)]">
         <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden="true">
           <Defs id={id} />
           <linearGradient id={id("table")} x1={0} y1={0} x2={0} y2={1}>

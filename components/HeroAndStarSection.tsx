@@ -72,12 +72,12 @@ export function HeroAndStarSection() {
           {/* Left Column */}
           <div className="lg:col-span-6 space-y-3.5 sm:space-y-4 text-left">
             {/* Top Badges */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-stamp-red text-cream-50 px-2 py-0.5 rounded text-[9.5px] font-display font-black uppercase tracking-wider shadow-xs">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="bg-stamp-red text-cream-50 px-3 py-1 rounded text-[11px] sm:text-xs font-display font-black uppercase tracking-wider shadow-xs">
                 WOOD-FIRED DAILY
               </span>
-              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-cream-50 border border-gold-500/30 text-crust-900 text-[10px] font-display font-black tracking-wider uppercase shadow-xs">
-                <div className="relative w-3.5 h-3.5 rounded-full overflow-hidden shrink-0">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-50 border border-gold-500/30 text-crust-900 text-[11px] sm:text-xs font-display font-black tracking-wider uppercase shadow-xs">
+                <div className="relative w-4 h-4 rounded-full overflow-hidden shrink-0">
                   <Image src="/images/logo.png" alt="Ananth Bakery Official Logo" fill className="object-contain" />
                 </div>
                 <span>The 1968 Crown Jewel</span>
@@ -85,7 +85,7 @@ export function HeroAndStarSection() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-espresso-950 tracking-tight leading-[0.96]">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-espresso-950 tracking-tight leading-[0.93]">
               HERITAGE <br />
               <span className="font-display font-extrabold text-gold-600 italic tracking-normal drop-shadow-xs">
                 STAR

@@ -143,34 +143,34 @@ const CSS =
   // multiply by the background: a no-op on a light theme, lights-off on a dark one
   ".dsh-dim{position:absolute;inset:0;background:var(--color-background);mix-blend-mode:multiply;opacity:.72;pointer-events:none}" +
   ".dsh-root:focus-visible{outline:2px solid var(--color-primary);outline-offset:-4px}" +
-  ".dsh-canvas{position:relative;width:100%;max-width:1440px;height:470px;margin:auto 0;display:flex;align-items:center;align-self:center}" +
-  ".dsh-arc{position:absolute;left:20px;top:0;width:960px;height:470px;overflow:visible;pointer-events:none}" +
+  ".dsh-canvas{position:relative;width:100%;max-width:1440px;height:400px;margin:auto 0;display:flex;align-items:center;align-self:center}" +
+  ".dsh-arc{position:absolute;left:20px;top:0;width:960px;height:400px;overflow:visible;pointer-events:none}" +
   ".dsh-btn{appearance:none;border:0;background:none;color:inherit;font:inherit;padding:0;margin:0;cursor:pointer}" +
   ".dsh-btn:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:10px}" +
   ".dsh-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}" +
-  ".dsh-top{position:absolute;left:800px;top:52px;display:flex;gap:14px}" +
+  ".dsh-top{position:absolute;left:800px;top:40px;display:flex;gap:14px}" +
   ".dsh-top .dsh-btn{width:36px;height:36px;display:grid;place-items:center;border-radius:10px}" +
-  ".dsh-pager{position:absolute;left:30px;top:130px;display:flex;flex-direction:column;align-items:center;gap:7px}" +
+  ".dsh-pager{position:absolute;left:30px;top:110px;display:flex;flex-direction:column;align-items:center;gap:7px}" +
   ".dsh-dot{width:14px;height:10px;display:grid;place-items:center}" +
   ".dsh-dot i{display:block;width:3px;height:3px;border-radius:3px;background:var(--color-foreground);opacity:.45;transition:height .45s cubic-bezier(.3,.7,.2,1),opacity .3s}" +
   ".dsh-dot[aria-current] i{height:22px;opacity:.9}" +
   ".dsh-dot[aria-current]{height:26px}" +
   ".dsh-dot{transition:height .45s cubic-bezier(.3,.7,.2,1)}" +
-  ".dsh-plates{position:absolute;left:80px;top:50px;width:245px;height:245px;touch-action:pan-y}" +
+  ".dsh-plates{position:absolute;left:70px;top:30px;width:235px;height:235px;touch-action:pan-y}" +
   ".dsh-orbit{position:absolute;inset:0;transform-origin:69% -217%;visibility:hidden;will-change:transform}" +
-  ".dsh-orbit>img{display:block;width:245px;height:245px;max-width:none;object-fit:contain;user-select:none;-webkit-user-drag:none;" +
+  ".dsh-orbit>img{display:block;width:235px;height:235px;max-width:none;object-fit:contain;user-select:none;-webkit-user-drag:none;" +
   "filter:drop-shadow(0 16px 22px rgba(0,0,0,.2)) drop-shadow(0 3px 5px rgba(0,0,0,.12))}" +
-  ".dsh-head{position:absolute;left:340px;top:60px;width:440px;height:160px}" +
+  ".dsh-head{position:absolute;left:290px;top:30px;width:560px;height:150px}" +
   ".dsh-hd{position:absolute;inset:0;visibility:hidden}" +
-  ".dsh-eye{font-size:12.5px;font-weight:600;letter-spacing:.01em;margin:0 0 4px 2px}" +
+  ".dsh-eye{font-size:12px;font-weight:600;letter-spacing:.02em;margin:0 0 4px 2px}" +
   ".dsh-t1,.dsh-t2{display:block;white-space:nowrap;line-height:1;text-transform:uppercase;margin:0}" +
-  ".dsh-t1{font-weight:200;letter-spacing:-.015em;margin-top:6px}" +
-  ".dsh-t2{font-weight:800;letter-spacing:-.025em;margin-top:6px;color:color-mix(in oklab,var(--color-foreground) 86%,transparent)}" +
-  ".dsh-acts{position:absolute;left:396px;top:250px;display:flex;gap:44px;font-size:12.5px;font-weight:500}" +
+  ".dsh-t1{font-weight:200;letter-spacing:-.015em;margin-top:4px}" +
+  ".dsh-t2{font-weight:800;letter-spacing:-.025em;margin-top:4px;color:color-mix(in oklab,var(--color-foreground) 86%,transparent)}" +
+  ".dsh-acts{position:absolute;left:340px;top:225px;display:flex;gap:36px;font-size:12.5px;font-weight:500}" +
   ".dsh-acts .dsh-btn{display:flex;align-items:center;gap:9px;padding:4px 0}" +
   ".dsh-acts .dsh-ico{width:13px;height:13px}" +
   ".dsh-acts .dsh-fill{fill:currentColor;stroke:none}" +
-  ".dsh-card{position:absolute;right:24px;top:50%;transform:translateY(-50%);width:280px;max-width:calc(100vw - 48px);padding:20px 22px;border-radius:20px;" +
+  ".dsh-card{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:280px;max-width:calc(100vw - 40px);padding:18px 20px;border-radius:20px;" +
   "background:rgba(253,248,242,0.96);border:1px solid rgba(133,69,26,0.18);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);" +
   "box-shadow:0 1px 0 rgba(255,255,255,0.7) inset,0 20px 45px -20px rgba(26,13,8,0.22);z-index:20}" +
   ".dsh-tabs{display:flex;justify-content:space-between;padding:0 6px 0 20px;font-size:12px;margin-bottom:20px}" +
@@ -206,6 +206,14 @@ const CSS =
   ".dsh-th .dsh-btn[aria-current] img{transform:scale(1.06)}" +
   ".dsh-th span{font-size:10px;line-height:1.25;text-align:center;font-weight:500;color:color-mix(in oklab,var(--color-foreground) 78%,transparent);max-width:78px}" +
   ".dsh-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}" +
+  "@container (min-width:768px) and (max-width:1024px){" +
+  ".dsh-plates{left:30px;top:40px;width:190px;height:190px}" +
+  ".dsh-orbit>img{width:190px;height:190px}" +
+  ".dsh-head{left:230px;top:30px;width:calc(100% - 500px);height:140px}" +
+  ".dsh-acts{left:230px;top:205px}" +
+  ".dsh-card{right:16px;width:250px;padding:14px 16px}" +
+  ".dsh-top{left:auto;right:275px;top:30px}" +
+  "}" +
   "@container (max-width:767px){" +
   ".dsh-root{height:auto;min-height:100svh;padding:12px 14px}" +
   ".dsh-canvas{position:relative;left:auto;top:auto;width:100%;height:auto;transform:none;display:flex;flex-direction:column;align-items:center;padding:10px 0}" +
@@ -325,27 +333,27 @@ export function DishOrbitCarousel({
     const d = dirRef.current
     const tl = gsap.timeline({ onComplete: () => { tlRef.current = null } })
     tlRef.current = tl
-    // plate: out over the top on the orbit, the next one swings in from the far side
-    tl.to(a.orbit, { rotation: SWING * d, duration: 0.62, ease: "power2.in" }, 0)
-      .set(a.orbit, { autoAlpha: 0, rotation: 0 }, 0.62)
-      .fromTo(b.orbit, { autoAlpha: 1, rotation: -SWING * d }, { rotation: 0, duration: 0.95, ease: "power3.out" }, 0.3)
-    // title: thin line clips away to the right, heavy line to the left, then the next wipes in
-    tl.to(a.t1, { clipPath: HIDE_1, duration: 0.42, ease: "power2.in" }, 0)
-      .to(a.t2, { clipPath: HIDE_2, duration: 0.42, ease: "power2.in" }, 0.06)
-      .to(a.eye, { autoAlpha: 0, duration: 0.25 }, 0)
-      .set(a.head, { autoAlpha: 0 }, 0.5)
-      .set(b.head, { autoAlpha: 1 }, 0.5)
-      .fromTo(b.eye, { autoAlpha: 0, y: 6 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.55)
-      .fromTo(b.t1, { clipPath: HIDE_1 }, { clipPath: SHOW, duration: 0.7, ease: "power3.out" }, 0.55)
-      .fromTo(b.t2, { clipPath: HIDE_2 }, { clipPath: SHOW, duration: 0.7, ease: "power3.out" }, 0.62)
-    // card: cross-fade, the incoming rows rise in turn
-    tl.to(a.body, { autoAlpha: 0, y: -6, duration: 0.3, ease: "power1.in" }, 0.05)
-      .set(b.body, { autoAlpha: 1, y: 0 }, 0.4)
-    if (b.body) tl.fromTo(b.body.children, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.06, ease: "power2.out" }, 0.4)
-    // the band stretches along the orbit with the plates, then settles into the next dish's span, morphing colour
-    tl.to(arc.current, { a0: ARC_SWEEP[0], a1: ARC_SWEEP[1], duration: 0.6, ease: "power2.inOut", onUpdate: drawArc }, 0)
-      .to(arc.current, { a0: rest[0], a1: rest[1], duration: 0.85, ease: "power3.out", onUpdate: drawArc }, 0.6)
-    if (arcRef.current) tl.to(arcRef.current, { fill: tint, duration: 1.1, ease: "power1.inOut" }, 0.1)
+    // plate: out over the top on the orbit, the next one swiftly swings in
+    tl.to(a.orbit, { rotation: SWING * d, autoAlpha: 0, duration: 0.28, ease: "power2.in" }, 0)
+      .set(a.orbit, { rotation: 0 }, 0.28)
+      .fromTo(b.orbit, { autoAlpha: 0, rotation: -SWING * d }, { autoAlpha: 1, rotation: 0, duration: 0.38, ease: "power2.out" }, 0.1)
+    // title: thin line clips away, then incoming wipes in fluidly
+    tl.to(a.t1, { clipPath: HIDE_1, duration: 0.22, ease: "power2.in" }, 0)
+      .to(a.t2, { clipPath: HIDE_2, duration: 0.22, ease: "power2.in" }, 0.04)
+      .to(a.eye, { autoAlpha: 0, duration: 0.16 }, 0)
+      .set(a.head, { autoAlpha: 0 }, 0.26)
+      .set(b.head, { autoAlpha: 1 }, 0.26)
+      .fromTo(b.eye, { autoAlpha: 0, y: 4 }, { autoAlpha: 1, y: 0, duration: 0.24, ease: "power2.out" }, 0.28)
+      .fromTo(b.t1, { clipPath: HIDE_1 }, { clipPath: SHOW, duration: 0.35, ease: "power2.out" }, 0.28)
+      .fromTo(b.t2, { clipPath: HIDE_2 }, { clipPath: SHOW, duration: 0.35, ease: "power2.out" }, 0.32)
+    // card: swift cross-fade
+    tl.to(a.body, { autoAlpha: 0, y: -4, duration: 0.2, ease: "power1.in" }, 0)
+      .set(b.body, { autoAlpha: 1, y: 0 }, 0.22)
+    if (b.body) tl.fromTo(b.body.children, { autoAlpha: 0, y: 6 }, { autoAlpha: 1, y: 0, duration: 0.28, stagger: 0.03, ease: "power2.out" }, 0.22)
+    // the band stretches along the orbit with the plates
+    tl.to(arc.current, { a0: ARC_SWEEP[0], a1: ARC_SWEEP[1], duration: 0.28, ease: "power2.inOut", onUpdate: drawArc }, 0)
+      .to(arc.current, { a0: rest[0], a1: rest[1], duration: 0.35, ease: "power2.out", onUpdate: drawArc }, 0.28)
+    if (arcRef.current) tl.to(arcRef.current, { fill: tint, duration: 0.35, ease: "power1.inOut" }, 0.05)
     shown.current = to
   }, [index, n, dishes])
 
@@ -359,23 +367,10 @@ export function DishOrbitCarousel({
     onChangeRef.current?.(next)
   }
 
-  // The page scroll drives the dish: the stage pins, one stretch of scroll per dish, snapping between them.
+  // The page scroll drives the dish smoothly
   const steps = scrollSteps(n, loop)
   const [isHovered, setIsHovered] = useState(false)
-
   const lastUserScrollRef = useRef(0)
-
-  // Auto-advance dishes: steps every 4.2s when user is idle, even while pinned
-  useEffect(() => {
-    if (n < 2) return
-    const timer = setInterval(() => {
-      const isRecentlyScrolled = Date.now() - lastUserScrollRef.current < 3200
-      if (!isHovered && !isRecentlyScrolled) {
-        step(1)
-      }
-    }, 4200)
-    return () => clearInterval(timer)
-  }, [isHovered, n, index])
 
   useEffect(() => {
     if (!scrollPin) return
@@ -385,10 +380,8 @@ export function DishOrbitCarousel({
       trigger: track,
       start: "top top",
       end: "bottom bottom",
-      snap: { snapTo: 1 / steps, duration: { min: 0.25, max: 0.6 }, delay: 0.05, ease: "power2.inOut" },
       onUpdate: (self) => {
         lastUserScrollRef.current = Date.now()
-        // Looping: the last stretch shows the first dish, so jump back to the top unseen.
         if (loop && self.progress >= 1 && self.direction > 0) {
           segRef.current = 0
           self.scroll(self.start + 1)
@@ -399,37 +392,21 @@ export function DishOrbitCarousel({
           select(n - 1, 1)
           return
         }
-        const seg = Math.round(self.progress * steps)
+        const seg = Math.min(n - 1, Math.max(0, Math.floor(self.progress * (steps + 0.15))))
         if (seg === segRef.current) return
         const dir = seg > segRef.current ? 1 : -1
         segRef.current = seg
         select(wrapIndex(seg, n), dir)
       },
     })
-    // At the very top no scroll is left to fire onUpdate, so scrolling up there wraps round to the last dish.
-    // Deferred a frame so the browser's own wheel scroll has landed first.
-    let raf = 0
-    const onWheel = (e: WheelEvent) => {
-      const y = trigger.scroll()
-      if (!loop || e.deltaY >= 0 || y < trigger.start - 1 || y > trigger.start + 1) return
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => {
-        segRef.current = n - 1
-        trigger.scroll(trigger.start + ((trigger.end - trigger.start) * (n - 1)) / steps)
-        select(n - 1, -1)
-      })
-    }
-    window.addEventListener("wheel", onWheel, { passive: true })
     stRef.current = trigger
     return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener("wheel", onWheel)
       trigger.kill()
       stRef.current = null
     }
   }, [scrollPin, steps, loop, n])
 
-  // Buttons, keys and swipes jump to a dish and move the scroll to its stretch, so the two stay in step.
+  // Buttons, keys and swipes jump to a dish and move the scroll to its stretch
   const go = (to: number, dir?: 1 | -1) => {
     if (n < 2) return
     const next = wrapIndex(to, n)
@@ -458,21 +435,6 @@ export function DishOrbitCarousel({
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(e.clientY - s.y) * 1.4) step(dx < 0 ? 1 : -1)
   }
 
-  const lastWheel = useRef(0)
-  const handleWheel = (e: React.WheelEvent) => {
-    if (Math.abs(e.deltaY) > 15) {
-      const now = Date.now()
-      if (now - lastWheel.current > 380) {
-        lastWheel.current = now
-        if (e.deltaY > 0) {
-          step(1)
-        } else {
-          step(-1)
-        }
-      }
-    }
-  }
-
   const start = stripStart(index, n, VISIBLE)
   const dish = dishes[index]
 
@@ -486,7 +448,6 @@ export function DishOrbitCarousel({
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onWheel={handleWheel}
     >
     <div
       ref={rootRef}
@@ -539,8 +500,8 @@ export function DishOrbitCarousel({
             <div key={i} ref={(el) => { heads.current[i] = el }} className="dsh-hd" aria-hidden={i !== index}>
               <p className="dsh-eye">{d.eyebrow ?? "#" + (i + 1) + " Most loved dish"}</p>
               <h2 style={{ margin: 0, font: "inherit" }}>
-                <span className="dsh-t1" style={{ fontSize: fitSize(d.title.length, 54, 380, 0.52) + "px" }}>{d.title}</span>
-                <span className="dsh-t2" style={{ fontSize: fitSize(d.subtitle.length, 58, 380, 0.56) + "px" }}>{d.subtitle}</span>
+                <span className="dsh-t1" style={{ fontSize: fitSize(d.title.length, 50, 540, 0.48) + "px" }}>{d.title}</span>
+                <span className="dsh-t2" style={{ fontSize: fitSize(d.subtitle.length, 54, 540, 0.5) + "px" }}>{d.subtitle}</span>
               </h2>
             </div>
           ))}

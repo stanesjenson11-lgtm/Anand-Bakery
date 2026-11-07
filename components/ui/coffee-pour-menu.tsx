@@ -262,13 +262,23 @@ const MILK_RAMP: [number, RGB][] = [
 ];
 /** Colour and opacity of a mix of espresso, water and milk. */
 function shade(e: number, w: number, m: number): [RGB, number] {
-  const s = e + w + m || 1;
+  const s = e + w + m;
+  if (!s || s < 1e-4) return [COFFEE_RAMP[3][1], 0];
   e /= s;
   w /= s;
   m /= s;
-  const c = e + w > 1e-4 ? 1 - Math.pow(1 - e / (e + w), 2) : 1;
+
+  // Pure water phase: visible mineral water shimmer rising from bottom
+  if (e < 0.015 && m < 0.015) {
+    return [[188, 215, 226], 0.52];
+  }
+
+  // Mixed or coffee phase
+  const ratio = (e + 1e-4) / (e + w + 1e-4);
+  const c = 1 - Math.pow(1 - Math.min(1, ratio * 2.3), 2);
   let rgb = ramp(COFFEE_RAMP, c);
-  const aC = c < 0.35 ? lerp(0.18, 0.88, c / 0.35) : lerp(0.88, 1, Math.min(1, (c - 0.35) / 0.35));
+  const aC = lerp(0.85, 0.98, c);
+
   if (m > 0.001) {
     const st: [number, RGB][] = [[0, rgb], ...MILK_RAMP.map(([p, col]) => [p, mixRGB(MILK, col, c)] as [number, RGB])];
     rgb = ramp(st, m);
@@ -278,17 +288,17 @@ function shade(e: number, w: number, m: number): [RGB, number] {
 const css = (c: RGB) => `rgb(${c[0] | 0},${c[1] | 0},${c[2] | 0})`;
 const STREAM: Record<CoffeeLiquid, { fill: string; a: number; hi: number }> = {
   espresso: { fill: "rgb(58,30,14)", a: 1, hi: 0.35 },
-  water: { fill: "rgb(188,204,208)", a: 0.7, hi: 1 },
+  water: { fill: "rgb(180,210,225)", a: 0.75, hi: 1 },
   milk: { fill: "rgb(250,245,236)", a: 1, hi: 0.9 },
 };
 const SWIRL: Record<CoffeeLiquid, string> = {
   espresso: "rgb(60,30,14)",
-  water: "rgb(230,225,215)",
+  water: "rgb(180,215,230)",
   milk: "rgb(252,247,238)",
 };
 const TYPE_INDEX: Record<CoffeeLiquid, number> = { espresso: 0, water: 1, milk: 2 };
-const PEN: Record<CoffeeLiquid, number> = { espresso: 0.3, water: 0.1, milk: 0.18 };
-const JET: Record<CoffeeLiquid, number> = { espresso: 0.9, water: 0.5, milk: 0.8 };
+const PEN: Record<CoffeeLiquid, number> = { espresso: 0.85, water: 0.15, milk: 0.28 };
+const JET: Record<CoffeeLiquid, number> = { espresso: 1.6, water: 0.6, milk: 1.0 };
 
 /* -------------------------------------------------------------------------- */
 /*                                  Physics                                   */
@@ -1502,14 +1512,7 @@ export function CoffeePourMenu({
     for (const c of fallers.slice(0, Math.max(0, fallers.length - 3))) sim.current.delete(c.key);
 
     const cup = makeCup(nextKey.current++, selected);
-    if (reduce) {
-      cup.mode = "fadeIn";
-      cup.opacity = 0;
-      cup.x = CX;
-      fillInstantly(cup);
-    } else {
-      cup.wait = falling ? 0.14 : 0.05;
-    }
+    cup.wait = falling ? 0.14 : 0.05;
     sim.current.set(cup.key, cup);
     setCups((cs) => [...cs.filter((c) => sim.current.has(c.key)), { key: cup.key, item: selected }]);
     loop();
@@ -1550,7 +1553,7 @@ export function CoffeePourMenu({
   return (
     <div
       className={cn(
-        "relative grid w-full items-center gap-5 rounded-[32px] bg-[#e4cdb0] p-4 text-[#3a271d] sm:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] sm:gap-10 sm:p-10",
+        "relative grid w-full items-center gap-6 rounded-[28px] sm:rounded-[32px] bg-[#e4cdb0] p-4 sm:p-7 lg:p-9 text-[#3a271d] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8",
         className,
       )}
     >
@@ -1558,7 +1561,7 @@ export function CoffeePourMenu({
         role="radiogroup"
         aria-label="Coffee menu"
         onKeyDown={onKeyDown}
-        className="grid grid-cols-2 gap-1.5 sm:flex sm:flex-col sm:gap-1"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col gap-1.5 sm:gap-2"
       >
         {items.map((it, i) => {
           const active = it.id === selected?.id;
@@ -1575,12 +1578,12 @@ export function CoffeePourMenu({
               onPointerEnter={(e) => e.pointerType === "mouse" && select(it.id)}
               onFocus={() => select(it.id)}
               onClick={() => select(it.id)}
-              className="group relative rounded-2xl px-3.5 py-2.5 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#b97a45]/60 sm:px-5 sm:py-3.5"
+              className="group relative rounded-2xl px-4 py-3 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[#b97a45]/60 sm:px-5 sm:py-3.5"
             >
               {active && (
                 <motion.span
                   layoutId={`${uid}-pill`}
-                  className="absolute inset-0 rounded-2xl bg-[#f7ecdd]/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_0_0_1px_rgba(185,122,69,0.32),0_1px_2px_rgba(90,55,25,0.08),0_14px_30px_-16px_rgba(90,55,25,0.4)]"
+                  className="absolute inset-0 rounded-2xl bg-[#f7ecdd]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_0_0_1px_rgba(185,122,69,0.32),0_1px_2px_rgba(90,55,25,0.08),0_14px_30px_-16px_rgba(90,55,25,0.4)]"
                   transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34 }}
                 />
               )}
@@ -1588,7 +1591,7 @@ export function CoffeePourMenu({
                 <span className="flex min-w-0 flex-col">
                   <span
                     className={cn(
-                      "text-[16px] leading-tight font-serif font-black tracking-tight transition-colors duration-300 sm:text-[22px] sm:leading-[1.15]",
+                      "text-[15px] sm:text-[18px] lg:text-[20px] leading-tight font-serif font-black tracking-tight transition-colors duration-300 whitespace-normal break-words",
                       active ? "text-[#3a271d]" : "text-[#3a271d]/60 group-hover:text-[#3a271d]/85",
                     )}
                   >
@@ -1597,7 +1600,7 @@ export function CoffeePourMenu({
                   {it.subtitle && (
                     <span
                       className={cn(
-                        "mt-0.5 text-[11px] tracking-tight transition-colors duration-300 sm:mt-1 sm:text-[12.5px] font-mono",
+                        "mt-0.5 text-[11px] sm:text-[12.5px] tracking-tight transition-colors duration-300 font-mono",
                         active ? "text-[#9a5e2e]" : "text-[#6b4a35]/70",
                       )}
                     >
@@ -1611,7 +1614,7 @@ export function CoffeePourMenu({
         })}
       </div>
 
-      <div className="relative aspect-[9/10] w-full overflow-hidden rounded-[26px] bg-[radial-gradient(80%_62%_at_50%_42%,#fbf1e3_0%,#f0dcc2_45%,#e2c6a3_80%,#d6b791_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_0_0_1px_rgba(120,75,35,0.08),0_30px_60px_-30px_rgba(90,55,25,0.5)]">
+      <div className="relative aspect-[9/10] sm:aspect-square lg:aspect-[9/10] w-full max-w-[400px] mx-auto overflow-hidden rounded-[24px] bg-[radial-gradient(80%_62%_at_50%_42%,#fbf1e3_0%,#f0dcc2_45%,#e2c6a3_80%,#d6b791_100%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_0_0_1px_rgba(120,75,35,0.08),0_24px_50px_-24px_rgba(90,55,25,0.45)]">
         <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 h-full w-full" aria-hidden="true">
           <Defs id={id} />
           <linearGradient id={id("table")} x1={0} y1={0} x2={0} y2={1}>

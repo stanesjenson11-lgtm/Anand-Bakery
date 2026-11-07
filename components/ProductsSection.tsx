@@ -123,23 +123,23 @@ export function ProductsSection() {
   };
 
   const sectionHeader = (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center pt-2 sm:pt-4">
-      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-50 border border-gold-500/30 text-gold-600 text-[10.5px] font-display font-black uppercase tracking-[0.2em] shadow-xs mb-1.5">
+    <div className="max-w-4xl mx-auto px-4 text-center pt-1 sm:pt-2">
+      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cream-50 border border-gold-500/30 text-gold-600 text-[9.5px] font-display font-black uppercase tracking-[0.18em] shadow-xs mb-1">
         <span>The Rotating Bakery Orbit</span>
         <span>•</span>
         <span>Studio 3D Presentation</span>
       </div>
 
-      <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-black text-espresso-950 tracking-tight leading-tight">
+      <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-black text-espresso-950 tracking-tight leading-snug">
         Baked Daily. Plated to Perfection.
       </h2>
 
-      <p className="mt-1 text-xs sm:text-sm text-espresso-900/70 font-sans leading-relaxed max-w-xl mx-auto">
+      <p className="mt-0.5 text-xs text-espresso-900/70 font-sans leading-tight max-w-lg mx-auto">
         From our 1968 Star Cake to wood-fired savory puffs and velvet hot brews — swing through Sawyerpuram&apos;s most celebrated bakery creations.
       </p>
 
       {orderedDish && (
-        <div className="mt-2 inline-block px-3 py-1 bg-crust-800 text-cream-50 text-[11px] font-mono rounded shadow animate-fade-in">
+        <div className="mt-1.5 inline-block px-3 py-1 bg-crust-800 text-cream-50 text-[11px] font-mono rounded shadow animate-fade-in">
           ✓ Added <strong>{orderedDish}</strong> to your daily visit itinerary!
         </div>
       )}

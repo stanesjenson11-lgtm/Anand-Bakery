@@ -126,11 +126,13 @@ export function HeritageStorySection() {
                 <h3 className="font-serif text-xl sm:text-2xl font-black text-cream-50 leading-tight">
                   The Modern Custodians
                 </h3>
+                <span className="inline-block mt-1 text-[11px] font-mono font-bold text-gold-400/90 tracking-wider uppercase">
+                  Managed by Mr. Levin Trios
+                </span>
               </div>
 
               <p className="font-sans text-xs sm:text-sm text-cream-200/85 leading-relaxed">
-                Today, the third generation proudly carries the torch — serving Sawyerpuram&apos;s celebrated Hot Americano, 
-                perfecting the Star Cake for travelers near and far, and infusing modern digital craft into timeless family heritage.
+                Today, under the dedicated leadership and management of Mr. Levin Trios, the third generation proudly carries the torch — serving Sawyerpuram&apos;s celebrated Hot Americano, perfecting the Star Cake for travelers near and far, and safeguarding the original 1968 recipe with modern hospitality excellence.
               </p>
             </div>
 
@@ -140,24 +142,6 @@ export function HeritageStorySection() {
               </span>
             </div>
           </div>
-        </div>
-
-        {/* Archival Banner / Family Promise (Comfortable, spacious strip) */}
-        <div className="relative rounded-2xl bg-gradient-to-r from-espresso-950 via-crust-900 to-espresso-950 border border-gold-500/30 p-5 sm:p-6 shadow-xl space-y-2">
-          <div className="flex flex-wrap items-center justify-between gap-1">
-            <span className="text-[10px] font-display font-black tracking-widest uppercase text-gold-400">
-              A JOURNEY OF HARDWORK, RESILIENCE & GRATITUDE
-            </span>
-            <span className="font-serif italic font-bold text-xs sm:text-sm text-gold-300">
-              — The Anand Bakery Family, Sawyerpuram
-            </span>
-          </div>
-          <h4 className="font-serif text-sm sm:text-base font-black text-cream-50">
-            &ldquo;This isn&apos;t just our bakery. It&apos;s our family&apos;s legacy.&rdquo;
-          </h4>
-          <p className="font-sans text-xs sm:text-sm text-cream-200/85 leading-relaxed">
-            Every loaf we bake, every cup of Americano we serve, and every smile we receive is a tribute to the dream that began in 1968. Thank you for walking this journey with us.
-          </p>
         </div>
       </div>
 

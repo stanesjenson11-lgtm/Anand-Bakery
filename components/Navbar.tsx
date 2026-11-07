@@ -21,20 +21,34 @@ function Swap({ text }: { text: string }) {
 }
 
 const NAV_LINKS = [
-  { href: "#hero", label: "Star Cake" },
+  { href: "#hero", label: "Home" },
   { href: "#americano", label: "Hot Americano" },
-  { href: "#menu", label: "Orbit Menu" },
+  { href: "#menu", label: "Menu" },
   { href: "#heritage", label: "1968 Legacy" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollDir, setScrollDir] = useState<"up" | "down">("up");
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
+  const lastScrollY = React.useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      const currentY = window.scrollY;
+      setIsScrolled(currentY > 40);
+
+      // Track scroll direction with a buffer to prevent jitter
+      const diff = currentY - lastScrollY.current;
+      if (Math.abs(diff) > 8) {
+        if (diff > 0 && currentY > 100) {
+          setScrollDir("down");
+        } else if (diff < 0) {
+          setScrollDir("up");
+        }
+        lastScrollY.current = currentY;
+      }
 
       const sections = ["hero", "americano", "menu", "heritage", "reviews", "visit"];
       for (const id of sections) {
@@ -70,9 +84,9 @@ export function Navbar() {
     const el = document.querySelector(href);
     if (!el) return;
     if (typeof window !== "undefined" && (window as any).__lenis) {
-      (window as any).__lenis.scrollTo(el, { offset: -60, duration: 1.1 });
+      (window as any).__lenis.scrollTo(el, { offset: -70, duration: 1.1 });
     } else {
-      const top = el.getBoundingClientRect().top + window.scrollY - 60;
+      const top = el.getBoundingClientRect().top + window.scrollY - 70;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
@@ -80,25 +94,59 @@ export function Navbar() {
   return (
     <>
       {/* 
-        Kickstart-Style Seamless Masthead:
-        At the top (in Hero), blends 100% seamlessly into the background without pill or borders.
-        On scroll, collapses into a compact floating pill.
+        Scroll-Down Floating Logo Circle:
+        When scrolling down, the full navbar hides and this minimal circle logo button stays pinned 
+        to the top-left corner. Clicking it returns to top / reveals navbar.
+      */}
+      <div
+        className={`fixed top-4 left-4 sm:left-6 z-50 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isScrolled && scrollDir === "down"
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-75 pointer-events-none"
+        }`}
+      >
+        <button
+          type="button"
+          onClick={(e) => {
+            setScrollDir("up");
+            handleNavClick(e as any, "#hero");
+          }}
+          className="w-11 h-11 rounded-full bg-cream-50/95 backdrop-blur-md border border-gold-500/50 shadow-md p-1.5 flex items-center justify-center hover:scale-110 hover:border-gold-500 transition-all cursor-pointer group"
+          aria-label="Anand Bakery — Back to top"
+        >
+          <Image
+            src="/images/logo.png"
+            alt="Anand Bakery"
+            width={28}
+            height={28}
+            className="object-contain group-hover:rotate-12 transition-transform duration-300"
+          />
+        </button>
+      </div>
+
+      {/* 
+        Main Masthead:
+        - At Hero top: Blends seamlessly into background (Kickstart style)
+        - On scroll UP: Floats down as a sleek, auto-fitting centered pill
+        - On scroll DOWN: Slides up out of view to maximize screen reading space
       */}
       <header
         className={`fixed inset-x-0 z-50 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isScrolled
-            ? "top-3 px-3 sm:px-6 flex justify-center"
-            : "top-0 px-6 sm:px-12 lg:px-16"
+            ? scrollDir === "down"
+              ? "-translate-y-28 opacity-0 pointer-events-none top-3 px-3 sm:px-6 flex justify-center"
+              : "translate-y-0 opacity-100 top-3 px-3 sm:px-6 flex justify-center"
+            : "translate-y-0 opacity-100 top-0 px-6 sm:px-12 lg:px-16"
         }`}
       >
         <div
           className={`pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isScrolled
-              ? "w-full max-w-4xl mx-auto rounded-full bg-cream-50/95 backdrop-blur-md border border-crust-800/12 shadow-[0_4px_24px_rgba(26,13,8,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] px-4 sm:px-6 py-2"
+              ? "w-auto max-w-fit mx-auto rounded-full bg-cream-50/95 backdrop-blur-md border border-crust-800/12 shadow-[0_4px_24px_rgba(26,13,8,0.08),inset_0_1px_0_rgba(255,255,255,0.8)] px-5 sm:px-7 py-2"
               : "w-full max-w-7xl mx-auto bg-transparent border-transparent shadow-none px-0 py-5 sm:py-6"
           }`}
         >
-          <div className="flex items-center justify-between gap-3 sm:gap-6">
+          <div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
             
             {/* Left: Brand Seal & Title */}
             <div className="flex items-center shrink-0">
@@ -129,10 +177,10 @@ export function Navbar() {
               </a>
             </div>
 
-            {/* Center: Sleek Navigation Links */}
+            {/* Center: Sleek Navigation Links (never colliding) */}
             <nav
               aria-label="Primary"
-              className="hidden md:flex items-center justify-center gap-4 lg:gap-7 xl:gap-8 text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-espresso-950/80 shrink-0"
+              className="hidden md:flex items-center justify-center gap-4 lg:gap-6 text-[10.5px] lg:text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-espresso-950/80 shrink-0"
             >
               {NAV_LINKS.map(({ href, label }) => {
                 const sectionId = href.replace("#", "");
@@ -161,7 +209,7 @@ export function Navbar() {
               <a
                 href="#visit"
                 onClick={(e) => handleNavClick(e, "#visit")}
-                className="hidden sm:inline-flex items-center text-[10.5px] lg:text-[11px] font-mono font-bold uppercase tracking-wider text-espresso-950 hover:text-gold-600 transition-colors whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-full hover:bg-gold-500/10 border border-gold-500/30 shrink-0"
+                className="hidden sm:inline-flex items-center text-[10px] lg:text-[10.5px] font-mono font-bold uppercase tracking-wider text-espresso-950 hover:text-gold-600 transition-colors whitespace-nowrap px-3 sm:px-3.5 py-1 rounded-full hover:bg-gold-500/10 border border-gold-500/30 shrink-0"
               >
                 <span>[ Plan a Visit → ]</span>
               </a>

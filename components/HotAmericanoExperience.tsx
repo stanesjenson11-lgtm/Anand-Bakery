@@ -79,7 +79,7 @@ export function HotAmericanoExperience() {
         {/* Section Header */}
         <div className="text-center max-w-xl mx-auto space-y-1 shrink-0">
           <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-black text-cream-50 tracking-tight leading-tight">
-            The Sawyerpuram{" "}
+            The Sawyerpuram <br />
             <span className="font-display italic text-gold-400 font-normal">Hot Americano</span>
           </h2>
         </div>

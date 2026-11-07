@@ -170,7 +170,7 @@ export function ProductsSection() {
   );
 
   return (
-    <section id="menu" className="relative bg-cream-100 text-espresso-950 scroll-mt-20">
+    <section id="menu" className="relative bg-cream-100 text-espresso-950 scroll-mt-0">
       {/* Torn Paper Top Border */}
       <div className="absolute top-0 left-0 right-0 h-4 bg-espresso-950 torn-edge-bottom opacity-10 pointer-events-none z-20" />
 

@@ -51,7 +51,7 @@ export function HeroAndStarSection() {
       <section
         id="hero"
         ref={heroRef}
-        className="relative min-h-[100svh] lg:h-screen lg:max-h-[920px] flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-cream-100 paper-grain scroll-mt-16"
+        className="relative min-h-[100svh] lg:h-screen lg:max-h-[920px] flex flex-col justify-between pt-16 sm:pt-24 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-cream-100 paper-grain scroll-mt-0"
       >
         {/* Background Sketches */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">

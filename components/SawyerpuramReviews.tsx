@@ -72,7 +72,7 @@ const REVIEWS: ReviewStory[] = [
 
 export function SawyerpuramReviews() {
   return (
-    <section id="reviews" className="relative pt-16 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-cream-100 paper-grain overflow-hidden scroll-mt-20">
+    <section id="reviews" className="relative pt-16 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-cream-100 paper-grain overflow-hidden scroll-mt-0">
       <div className="max-w-7xl mx-auto space-y-14">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">

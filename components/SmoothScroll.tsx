@@ -37,7 +37,36 @@ export function SmoothScroll() {
     // Section Snap Locking: Gracefully lock to the nearest section when scroll settles
     let snapTimeout: ReturnType<typeof setTimeout> | null = null;
     let isUserInteracting = false;
+    let isNavigating = false;
     let wheelResetTimer: ReturnType<typeof setTimeout>;
+    let navLockTimer: ReturnType<typeof setTimeout>;
+
+    // Robust programmatic navigation lock for navbar and buttons
+    const scrollToTarget = (targetEl: HTMLElement, duration = 0.85) => {
+      isNavigating = true;
+      if (snapTimeout) clearTimeout(snapTimeout);
+      clearTimeout(navLockTimer);
+
+      lenis.scrollTo(targetEl, {
+        offset: 0,
+        duration,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        onComplete: () => {
+          // Precise lock to ensure the section is pinned flush to viewport top
+          lenis.scrollTo(targetEl, { offset: 0, immediate: true });
+          navLockTimer = setTimeout(() => {
+            isNavigating = false;
+          }, 120);
+        },
+      });
+
+      // Fallback reset
+      navLockTimer = setTimeout(() => {
+        isNavigating = false;
+      }, duration * 1000 + 200);
+    };
+
+    (window as any).__scrollToTarget = scrollToTarget;
 
     const onUserTouchStart = () => { isUserInteracting = true; };
     const onUserTouchEnd = () => { isUserInteracting = false; };
@@ -52,10 +81,12 @@ export function SmoothScroll() {
     window.addEventListener("wheel", onUserWheel, { passive: true });
 
     lenis.on("scroll", (e: any) => {
+      if (isNavigating) return;
       if (snapTimeout) clearTimeout(snapTimeout);
 
       // Settle check (disabled on mobile touch screens for silky native inertia)
       snapTimeout = setTimeout(() => {
+        if (isNavigating) return;
         if (window.innerWidth < 768) return;
         if (isUserInteracting) return;
         if (Math.abs(e.velocity) > 0.25) return;
@@ -97,20 +128,17 @@ export function SmoothScroll() {
       }, 190);
     });
 
-    // Intercept all in-page hash links so they land cleanly at exact offsets
+    // Intercept in-page hash links so they use our locked scrollToTarget
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
       if (!target) return;
       const href = target.getAttribute("href");
       if (href && href.startsWith("#") && href.length > 1) {
-        const el = document.querySelector(href);
+        const id = href.replace("#", "");
+        const el = document.getElementById(id);
         if (el) {
           e.preventDefault();
-          lenis.scrollTo(el as HTMLElement, {
-            offset: 0,
-            duration: 1.1,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          });
+          scrollToTarget(el as HTMLElement);
         }
       }
     };
@@ -120,12 +148,14 @@ export function SmoothScroll() {
     return () => {
       if (snapTimeout) clearTimeout(snapTimeout);
       clearTimeout(wheelResetTimer);
+      clearTimeout(navLockTimer);
       window.removeEventListener("touchstart", onUserTouchStart);
       window.removeEventListener("touchend", onUserTouchEnd);
       window.removeEventListener("wheel", onUserWheel);
       gsap.ticker.remove(tickerUpdate);
       document.removeEventListener("click", handleAnchorClick);
       delete (window as any).__lenis;
+      delete (window as any).__scrollToTarget;
       lenis.destroy();
     };
   }, []);

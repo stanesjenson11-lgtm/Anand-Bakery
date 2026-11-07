@@ -23,7 +23,7 @@ export function VisitBakerySection() {
   };
 
   return (
-    <section id="visit" className="relative pt-16 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-cream-50 paper-grain scroll-mt-20">
+    <section id="visit" className="relative pt-16 sm:pt-20 pb-16 px-4 sm:px-6 lg:px-8 bg-cream-50 paper-grain scroll-mt-0">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">

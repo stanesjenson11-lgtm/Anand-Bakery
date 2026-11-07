@@ -81,10 +81,14 @@ export function Navbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMenuOpen(false);
-    const el = document.querySelector(href);
+    const targetId = href.replace("#", "");
+    setActiveSection(targetId);
+    const el = document.getElementById(targetId);
     if (!el) return;
-    if (typeof window !== "undefined" && (window as any).__lenis) {
-      (window as any).__lenis.scrollTo(el, { offset: 0, duration: 1.0 });
+    if (typeof window !== "undefined" && (window as any).__scrollToTarget) {
+      (window as any).__scrollToTarget(el);
+    } else if (typeof window !== "undefined" && (window as any).__lenis) {
+      (window as any).__lenis.scrollTo(el, { offset: 0, duration: 0.85 });
     } else {
       const top = el.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top, behavior: "smooth" });
@@ -126,7 +130,7 @@ export function Navbar() {
 
       {/* 
         Main Masthead:
-        - At Hero top: Blends seamlessly into background (Kickstart style)
+        - At Hero top: Full-width luxurious layout (logo on left, links in center, action on right)
         - On scroll UP: Floats down as a sleek, auto-fitting centered pill
         - On scroll DOWN: Slides up out of view to maximize screen reading space
       */}
@@ -146,8 +150,13 @@ export function Navbar() {
               : "w-full max-w-7xl mx-auto bg-transparent border-transparent shadow-none px-0 py-5 sm:py-6"
           }`}
         >
-          <div className="flex items-center gap-4 sm:gap-6 lg:gap-8">
-            
+          <div
+            className={`flex items-center ${
+              isScrolled
+                ? "gap-4 sm:gap-6 lg:gap-8"
+                : "justify-between w-full"
+            }`}
+          >
             {/* Left: Brand Seal & Title */}
             <div className="flex items-center shrink-0">
               <a
@@ -170,17 +179,21 @@ export function Navbar() {
                   <span className="font-serif text-sm sm:text-base font-black tracking-tight text-espresso-950 group-hover:text-gold-600 transition-colors">
                     ANAND BAKERY
                   </span>
-                  <span className="hidden sm:inline text-[9px] font-mono font-bold tracking-widest text-gold-600">
+                  <span className="hidden sm:inline text-[9.5px] font-display font-black tracking-widest text-gold-600">
                     • 1968
                   </span>
                 </div>
               </a>
             </div>
 
-            {/* Center: Sleek Navigation Links (never colliding) */}
+            {/* Center: Sleek Navigation Links with Aesthetic Syne Typeface */}
             <nav
               aria-label="Primary"
-              className="hidden md:flex items-center justify-center gap-4 lg:gap-6 text-[10.5px] lg:text-[11px] font-mono font-bold uppercase tracking-[0.14em] text-espresso-950/80 shrink-0"
+              className={`hidden md:flex items-center justify-center font-display font-extrabold uppercase shrink-0 ${
+                isScrolled
+                  ? "gap-4 lg:gap-6 text-[11px] lg:text-[11.5px] tracking-[0.12em]"
+                  : "gap-6 lg:gap-9 text-[12px] lg:text-[13px] tracking-[0.14em]"
+              }`}
             >
               {NAV_LINKS.map(({ href, label }) => {
                 const sectionId = href.replace("#", "");
@@ -192,7 +205,7 @@ export function Navbar() {
                     href={href}
                     onClick={(e) => handleNavClick(e, href)}
                     className={`relative py-1 transition-colors whitespace-nowrap ${
-                      isActive ? "text-gold-600 font-extrabold" : "hover:text-gold-600 text-espresso-950/75"
+                      isActive ? "text-gold-600 font-black" : "hover:text-gold-600 text-espresso-950/80"
                     }`}
                   >
                     <Swap text={label} />
@@ -209,7 +222,7 @@ export function Navbar() {
               <a
                 href="#visit"
                 onClick={(e) => handleNavClick(e, "#visit")}
-                className="hidden sm:inline-flex items-center text-[10px] lg:text-[10.5px] font-mono font-bold uppercase tracking-wider text-espresso-950 hover:text-gold-600 transition-colors whitespace-nowrap px-3 sm:px-3.5 py-1 rounded-full hover:bg-gold-500/10 border border-gold-500/30 shrink-0"
+                className="hidden sm:inline-flex items-center font-display font-black text-[10.5px] lg:text-[11px] uppercase tracking-[0.12em] text-espresso-950 hover:text-gold-600 transition-colors whitespace-nowrap px-3.5 sm:px-4 py-1.5 rounded-full hover:bg-gold-500/10 border border-gold-500/35 shrink-0"
               >
                 <span>[ Plan a Visit → ]</span>
               </a>
@@ -267,7 +280,7 @@ export function Navbar() {
               key={href}
               href={href}
               onClick={(e) => handleNavClick(e, href)}
-              className="font-serif text-2xl sm:text-4xl font-black text-cream-50 hover:text-gold-400 transition-colors uppercase tracking-tight"
+              className="font-display text-2xl sm:text-4xl font-black text-cream-50 hover:text-gold-400 transition-colors uppercase tracking-tight"
             >
               {label}
             </a>
@@ -275,15 +288,15 @@ export function Navbar() {
           <a
             href="#visit"
             onClick={(e) => handleNavClick(e, "#visit")}
-            className="mt-2 inline-flex items-center gap-2 text-gold-400 font-mono font-bold text-xs uppercase tracking-widest"
+            className="mt-2 inline-flex items-center gap-2 text-gold-400 font-display font-black text-xs uppercase tracking-widest"
           >
             <span>[ Plan a Visit → ]</span>
           </a>
         </nav>
 
-        <div className="border-t border-crust-800/50 pt-4 text-[11px] font-mono uppercase tracking-widest text-cream-200/50">
+        <div className="border-t border-crust-800/50 pt-4 text-[11px] font-sans uppercase tracking-widest text-cream-200/60">
           <p>Sawyerpuram, Thoothukudi District • Est. 1968</p>
-          <p className="mt-1 text-gold-400/90 font-bold">Open Daily: 6:00 AM – 10:30 PM</p>
+          <p className="mt-1 text-gold-400 font-bold">Open Daily: 6:00 AM – 10:30 PM</p>
         </div>
       </div>
     </>

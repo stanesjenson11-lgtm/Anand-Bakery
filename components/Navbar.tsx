@@ -179,20 +179,20 @@ export function Navbar() {
                   <span className="font-serif text-sm sm:text-base font-black tracking-tight text-espresso-950 group-hover:text-gold-600 transition-colors">
                     ANAND BAKERY
                   </span>
-                  <span className="hidden sm:inline text-[9.5px] font-display font-black tracking-widest text-gold-600">
+                  <span className="hidden sm:inline text-[10px] font-sans font-bold tracking-normal text-gold-600">
                     • 1968
                   </span>
                 </div>
               </a>
             </div>
 
-            {/* Center: Sleek Navigation Links with Aesthetic Syne Typeface */}
+            {/* Center: Sleek Navigation Links (Compact, Aesthetic, Less Wide) */}
             <nav
               aria-label="Primary"
-              className={`hidden md:flex items-center justify-center font-display font-extrabold uppercase shrink-0 ${
+              className={`hidden md:flex items-center justify-center font-sans font-semibold shrink-0 ${
                 isScrolled
-                  ? "gap-4 lg:gap-6 text-[11px] lg:text-[11.5px] tracking-[0.12em]"
-                  : "gap-6 lg:gap-9 text-[12px] lg:text-[13px] tracking-[0.14em]"
+                  ? "gap-4 lg:gap-6 text-[12.5px] lg:text-[13px] tracking-tight"
+                  : "gap-6 lg:gap-8 text-[13px] lg:text-[13.5px] tracking-tight"
               }`}
             >
               {NAV_LINKS.map(({ href, label }) => {
@@ -205,7 +205,7 @@ export function Navbar() {
                     href={href}
                     onClick={(e) => handleNavClick(e, href)}
                     className={`relative py-1 transition-colors whitespace-nowrap ${
-                      isActive ? "text-gold-600 font-black" : "hover:text-gold-600 text-espresso-950/80"
+                      isActive ? "text-gold-600 font-bold" : "hover:text-gold-600 text-espresso-950/75"
                     }`}
                   >
                     <Swap text={label} />
@@ -222,7 +222,7 @@ export function Navbar() {
               <a
                 href="#visit"
                 onClick={(e) => handleNavClick(e, "#visit")}
-                className="hidden sm:inline-flex items-center font-display font-black text-[10.5px] lg:text-[11px] uppercase tracking-[0.12em] text-espresso-950 hover:text-gold-600 transition-colors whitespace-nowrap px-3.5 sm:px-4 py-1.5 rounded-full hover:bg-gold-500/10 border border-gold-500/35 shrink-0"
+                className="hidden sm:inline-flex items-center font-sans font-semibold text-[11.5px] lg:text-[12px] tracking-tight text-espresso-950 hover:text-gold-600 transition-colors whitespace-nowrap px-3.5 sm:px-4 py-1.5 rounded-full hover:bg-gold-500/10 border border-gold-500/35 shrink-0"
               >
                 <span>[ Plan a Visit → ]</span>
               </a>
@@ -280,7 +280,7 @@ export function Navbar() {
               key={href}
               href={href}
               onClick={(e) => handleNavClick(e, href)}
-              className="font-display text-2xl sm:text-4xl font-black text-cream-50 hover:text-gold-400 transition-colors uppercase tracking-tight"
+              className="font-sans text-2xl sm:text-3xl font-bold text-cream-50 hover:text-gold-400 transition-colors tracking-tight"
             >
               {label}
             </a>
@@ -288,7 +288,7 @@ export function Navbar() {
           <a
             href="#visit"
             onClick={(e) => handleNavClick(e, "#visit")}
-            className="mt-2 inline-flex items-center gap-2 text-gold-400 font-display font-black text-xs uppercase tracking-widest"
+            className="mt-2 inline-flex items-center gap-2 text-gold-400 font-sans font-semibold text-xs tracking-tight"
           >
             <span>[ Plan a Visit → ]</span>
           </a>

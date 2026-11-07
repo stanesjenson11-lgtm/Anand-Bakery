@@ -122,68 +122,72 @@ export function ProductsSection() {
     }, 3000);
   };
 
+  const sectionHeader = (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center pt-2 sm:pt-4">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-50 border border-gold-500/30 text-gold-600 text-[10.5px] font-display font-black uppercase tracking-[0.2em] shadow-xs mb-1.5">
+        <span>The Rotating Bakery Orbit</span>
+        <span>•</span>
+        <span>Studio 3D Presentation</span>
+      </div>
+
+      <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-black text-espresso-950 tracking-tight leading-tight">
+        Baked Daily. Plated to Perfection.
+      </h2>
+
+      <p className="mt-1 text-xs sm:text-sm text-espresso-900/70 font-sans leading-relaxed max-w-xl mx-auto">
+        From our 1968 Star Cake to wood-fired savory puffs and velvet hot brews — swing through Sawyerpuram&apos;s most celebrated bakery creations.
+      </p>
+
+      {orderedDish && (
+        <div className="mt-2 inline-block px-3 py-1 bg-crust-800 text-cream-50 text-[11px] font-mono rounded shadow animate-fade-in">
+          ✓ Added <strong>{orderedDish}</strong> to your daily visit itinerary!
+        </div>
+      )}
+    </div>
+  );
+
+  const qualityGuaranteesFooter = (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 w-full border-t border-crust-800/15 pt-2 pb-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 text-center">
+        <div>
+          <span className="block font-serif text-lg sm:text-xl font-black text-gold-600">100%</span>
+          <span className="text-[10px] font-display uppercase tracking-widest text-espresso-900/70">Pure Coconut Oil</span>
+        </div>
+        <div>
+          <span className="block font-serif text-lg sm:text-xl font-black text-gold-600">4:00 PM</span>
+          <span className="text-[10px] font-display uppercase tracking-widest text-espresso-900/70">Hot Wood-Fired Batch</span>
+        </div>
+        <div>
+          <span className="block font-serif text-lg sm:text-xl font-black text-gold-600">3 Generations</span>
+          <span className="text-[10px] font-display uppercase tracking-widest text-espresso-900/70">Family Craftsmanship</span>
+        </div>
+        <div>
+          <span className="block font-serif text-lg sm:text-xl font-black text-gold-600">Zero Artificial</span>
+          <span className="text-[10px] font-display uppercase tracking-widest text-espresso-900/70">Preservatives or Colors</span>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <section id="menu" className="relative bg-cream-100 text-espresso-950 pt-10 sm:pt-14 pb-4 sm:pb-6 overflow-hidden scroll-mt-20">
+    <section id="menu" className="relative bg-cream-100 text-espresso-950 scroll-mt-20">
       {/* Torn Paper Top Border */}
-      <div className="absolute top-0 left-0 right-0 h-4 bg-espresso-950 torn-edge-bottom opacity-10 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-4 bg-espresso-950 torn-edge-bottom opacity-10 pointer-events-none z-20" />
 
       {/* Decorative Heritage Sketches */}
-      <WheatSketch className="absolute -left-10 top-24 w-32 h-44 opacity-20 pointer-events-none hidden lg:block -rotate-12" />
-      <CoffeeCupSketch className="absolute -right-8 top-32 w-28 h-28 opacity-25 pointer-events-none hidden lg:block rotate-6" />
+      <WheatSketch className="absolute -left-10 top-24 w-32 h-44 opacity-20 pointer-events-none hidden lg:block -rotate-12 z-10" />
+      <CoffeeCupSketch className="absolute -right-8 top-32 w-28 h-28 opacity-25 pointer-events-none hidden lg:block rotate-6 z-10" />
 
-      {/* Section Header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4 sm:mb-6 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-50 border border-gold-500/30 text-gold-600 text-[11px] font-display font-black uppercase tracking-[0.2em] shadow-sm mb-2.5">
-          <span>The Rotating Bakery Orbit</span>
-          <span>•</span>
-          <span>Studio 3D Presentation</span>
-        </div>
-
-        <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-black text-espresso-950 tracking-tight">
-          Baked Daily. Plated to Perfection.
-        </h2>
-
-        <p className="mt-2.5 max-w-2xl mx-auto text-sm sm:text-base text-espresso-900/70 font-sans leading-relaxed">
-          From our 1968 Star Cake to wood-fired savory puffs and velvet hot brews — swing through Sawyerpuram&apos;s most celebrated bakery creations.
-        </p>
-
-        {orderedDish && (
-          <div className="mt-3 inline-block px-4 py-2 bg-crust-800 text-cream-50 text-xs font-mono rounded shadow-lg animate-fade-in">
-            ✓ Added <strong>{orderedDish}</strong> to your daily visit itinerary!
-          </div>
-        )}
-      </div>
-
-      {/* Seamless Full-Section Orbit Carousel (Natural section, scroll-wheel driven & auto-rotating) */}
-      <div className="relative w-full">
-        <DishOrbitCarousel
-          dishes={BAKERY_DISHES}
-          height="470px"
-          scrollPin={false}
-          loop={true}
-          onOrder={handleOrder}
-        />
-      </div>
-
-      {/* Under-Carousel Quality Guarantees Bar */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-3 sm:mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center border-t border-crust-800/15 pt-4 sm:pt-5">
-        <div>
-          <span className="block font-serif text-2xl font-black text-gold-600">100%</span>
-          <span className="text-[11px] font-display uppercase tracking-widest text-espresso-900/70">Pure Coconut Oil</span>
-        </div>
-        <div>
-          <span className="block font-serif text-2xl font-black text-gold-600">4:00 PM</span>
-          <span className="text-[11px] font-display uppercase tracking-widest text-espresso-900/70">Hot Wood-Fired Batch</span>
-        </div>
-        <div>
-          <span className="block font-serif text-2xl font-black text-gold-600">3 Generations</span>
-          <span className="text-[11px] font-display uppercase tracking-widest text-espresso-900/70">Family Craftsmanship</span>
-        </div>
-        <div>
-          <span className="block font-serif text-2xl font-black text-gold-600">Zero Artificial</span>
-          <span className="text-[11px] font-display uppercase tracking-widest text-espresso-900/70">Preservatives or Colors</span>
-        </div>
-      </div>
+      {/* Pinned Full-Section Orbit Carousel (Scroll locked, auto-rotates, unpins on reaching end) */}
+      <DishOrbitCarousel
+        dishes={BAKERY_DISHES}
+        height="100svh"
+        scrollPin={true}
+        loop={false}
+        header={sectionHeader}
+        footer={qualityGuaranteesFooter}
+        onOrder={handleOrder}
+      />
     </section>
   );
 }

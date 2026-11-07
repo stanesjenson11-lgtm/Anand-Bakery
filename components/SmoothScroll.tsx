@@ -2,9 +2,13 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function SmoothScroll() {
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     // Only run on client with smooth inertia
     const lenis = new Lenis({
       duration: 1.1,
@@ -16,6 +20,17 @@ export function SmoothScroll() {
 
     // Expose lenis globally for laser-precise anchor jumps
     (window as any).__lenis = lenis;
+
+    // Connect Lenis with GSAP ScrollTrigger for seamless pinning
+    lenis.on("scroll", () => {
+      ScrollTrigger.update();
+    });
+
+    const tickerUpdate = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(tickerUpdate);
+    gsap.ticker.lagSmoothing(0);
 
     // Intercept all in-page hash links so they land cleanly at exact offsets
     const handleAnchorClick = (e: MouseEvent) => {
@@ -37,15 +52,8 @@ export function SmoothScroll() {
 
     document.addEventListener("click", handleAnchorClick);
 
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
     return () => {
-      cancelAnimationFrame(rafId);
+      gsap.ticker.remove(tickerUpdate);
       document.removeEventListener("click", handleAnchorClick);
       delete (window as any).__lenis;
       lenis.destroy();
